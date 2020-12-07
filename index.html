@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cheat Sheet Template v1.0.0</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /*
+        name: Cheat Sheet Template
+        version: v1.0.0
+        url: https://github.com/steve-232/cheat-sheet-template
+        license: MIT
+      */
+      html,
+      body {
+        height: 100%;
+        font: 16px "Roboto", sans-serif;
+        color: #111;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: normal;
+      }
+      pre {
+        padding: 14px 16px;
+        margin: 0 20px 0 0;
+        line-height: 20px;
+        border: 1px solid #e4e4e4;
+        user-select: none;
+        white-space: initial;
+        transition: all 160ms linear 10ms, transform 60ms linear;
+      }
+      pre i {
+        font-style: normal;
+        color: #8a8a8a;
+        transition: opacity 160ms linear 10ms;
+      }
+      code {
+        white-space: pre-line;
+      }
+      .clear-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .content-on-middle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .wrapper {
+        height: 100%;
+      }
+      .main-content {
+        box-sizing: border-box;
+        padding: 0 60px 50px;
+        margin-left: 280px;
+      }
+      .main-content section {
+        min-height: 100vh;
+        padding-top: 30px;
+      }
+      .section-title {
+        margin-bottom: 10px;
+        padding: 0 0 10px 30px;
+        font-size: 28px;
+        border-bottom: 1px solid #e4e4e4;
+      }
+      .content-body {
+        margin: 30px 30px 60px;
+      }
+      .content-list {
+        position: relative;
+        padding: 30px;
+        border: 1px solid #e4e4e4;
+      }
+      .content-list li {
+        display: flex;
+        position: relative;
+        margin-bottom: 10px;
+        align-items: center;
+      }
+      .content-list li pre {
+        min-width: max-content;
+        font-size: 14px;
+      }
+      .content-list li code {
+        min-width: max-content;
+      }
+      .content-list li p {
+        margin: 0;
+      }
+      .content-list li:last-child {
+        margin-bottom: 0;
+      }
+      .content-list p {
+        font-style: italic;
+      }
+      .copy-content {
+        background-color: #efefef;
+        border-color: transparent;
+        outline: 2px solid transparent;
+      }
+      .copy-content:hover {
+        cursor: pointer;
+        outline-color: #c7c7c7bd;
+      }
+      .copy-content:hover i {
+        opacity: 0;
+      }
+      .copy-content:active {
+        opacity: 0.5;
+        transform: scale(0.96);
+      }
+      .aside-menu {
+        width: 280px;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.11);
+        border-right: 1px solid #e4e4e4bf;
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      .main-nav a {
+        display: block;
+        padding: 16px 20px;
+        color: #737373;
+        text-decoration: none;
+        border-bottom: 1px solid #e4e4e4;
+        transition: all 160ms linear;
+      }
+      .main-nav a:hover,
+      .main-nav .active {
+        color: #111;
+        background-color: #f9f9f9;
+      }
+      .main-nav a:active {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- wrapper / start -->
+    <div class="wrapper">
+      <aside class="aside-menu">
+        <nav id="main-nav" class="main-nav">
+          <ul class="clear-list">
+            <li>
+              <a href="#section-1">Section One</a>
+            </li>
+            <li>
+              <a href="#section-2">Section Two</a>
+            </li>
+            <li>
+              <a href="#section-3">Section Three</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <!-- content / start -->
+      <main class="main-content">
+        <!-- main / start -->
+        <section id="section-1">
+          <h2 class="section-title">Section One Title</h2>
+          <div class="content-body">
+            <h3 class="content-title">Subtitle One</h3>
+            <ul class="content-list clear-list">
+              <li>
+                <pre
+                  class="copy-content"
+                ><code>plugin command --flag <i>"argument"</i></code></pre>
+                <p>Copying of the command is enabled</p>
+              </li>
+              <li>
+                <pre><code>plugin command --flag <i>"argument"</i></code></pre>
+                <p>Copying of the command is disabled</p>
+              </li>
+            </ul>
+          </div>
+          <div class="content-body">
+            <h3 class="content-title">Subtitle Two</h3>
+            <ul class="content-list clear-list">
+              <li>
+                <pre class="copy-content" data-clear-white-space>
+                  <code>query {
+                    &nbsp;nameOfTheFunction {
+                      &nbsp;&nbsp;property_1
+                      &nbsp;&nbsp;property_2
+                      &nbsp;&nbsp;property_3
+                      &nbsp;&nbsp;property_4
+                      &nbsp;&nbsp;property_5
+                    &nbsp;}
+                    }
+                  </code>
+                </pre>
+                <p>
+                  Copying of the command and removing of extra white space is
+                  enabled
+                </p>
+              </li>
+              <li>
+                <pre>
+                  <code>query {
+                    &nbsp;nameOfTheFunction {
+                      &nbsp;&nbsp;property_1
+                      &nbsp;&nbsp;property_2
+                      &nbsp;&nbsp;property_3
+                      &nbsp;&nbsp;property_4
+                      &nbsp;&nbsp;property_5
+                    &nbsp;}
+                    }
+                  </code>
+                </pre>
+                <p>Copying of the command is disabled</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <!-- section / end -->
+        <!-- section / start -->
+        <section id="section-2">
+          <h2 class="section-title">Section Two Title</h2>
+          <div class="content-body">
+            <h3 class="content-title">Subtitle One</h3>
+            <ul class="content-list clear-list">
+              <li>
+                <pre
+                  class="copy-content"
+                ><code>plugin command <i>argument</i></code></pre>
+                <p>Vivamus tempor nunc eget dui vestibulum</p>
+              </li>
+              <li>
+                <pre
+                  class="copy-content"
+                ><code>plugin command <i>argument1 argument2</i></code></pre>
+                <p>Aliquam vitae lorem at elit</p>
+              </li>
+              <li>
+                <pre
+                  class="copy-content"
+                ><code>plugin command --flag</code></pre>
+                <p>Quisque eget lorem neque</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <!-- section / end -->
+        <!-- section / start -->
+        <section id="section-3">
+          <h2 class="section-title">Section Three Title</h2>
+          <div class="content-body">
+            <ul class="content-list clear-list">
+              <li>
+                <pre
+                  class="copy-content"
+                ><code>plugin command <i>argument</i></code></pre>
+                <p>
+                  Vivamus libero felis, pulvinar non imperdiet sit amet, sodales
+                  in orci. In eget libero et velit fermentum feugiat. Nulla
+                  felis libero, suscipit sit amet lacus in, ultrices rutrum mi.
+                  Pellentesque habitant morbi tristique senectus et netus et
+                  malesuada fames ac turpis egestas. In mattis quis justo ac
+                  ornare. Sed felis tortor, malesuada sit amet pulvinar eu,
+                  ullamcorper ac est. Phasellus sit amet mauris nisl. Praesent
+                  in molestie arcu. Nullam nec ligula quis quam vehicula
+                  condimentum. Ut euismod felis sed efficitur semper. Vivamus
+                  vestibulum nisi sapien, sit amet molestie orci egestas eget.
+                  Mauris dictum porta turpis, mattis tempor tortor dapibus et.
+                </p>
+              </li>
+              <li>
+                <pre class="copy-content">
+                  <code>query {
+                    &nbsp;nameOfTheFunction {
+                      &nbsp;&nbsp;property_1
+                      &nbsp;&nbsp;property_2
+                      &nbsp;&nbsp;property_3
+                      &nbsp;&nbsp;property_4
+                      &nbsp;&nbsp;property_5
+                    &nbsp;}
+                    }
+                  </code>
+                </pre>
+                <p>Morbi sagittis eu</p>
+              </li>
+              <li>
+                <pre
+                  class="copy-content"
+                ><code>plugin command --flag <i>argument</i></code></pre>
+                <p>Aliquam vel ultricies neque</p>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <!-- section / end -->
+      </main>
+      <!-- main / end -->
+    </div>
+    <!-- wrapper / end -->
+
+    <script>
+      /*
+        name: Cheat Sheet Template
+        version: v1.0.0
+        url: https://github.com/steve-232/cheat-sheet-template
+        license: MIT
+      */
+      const mainNavLinks = document.querySelectorAll(".main-nav a");
+
+      mainNavLinks.forEach((link) => {
+        if (link.hash === location.hash) link.classList.add("active");
+        link.addEventListener("click", function () {
+          mainNavLinks.forEach((link) => link.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+
+      if (!location.hash.length) mainNavLinks[0].classList.add("active");
+
+      const commands = document.querySelectorAll(".copy-content");
+
+      commands.forEach((command) => {
+        command.addEventListener("click", function () {
+          let { innerHTML: innerHtmlPrev, offsetWidth: offsetWidthPrev } = this;
+          let innerHtmlTemp = innerHtmlPrev.replaceAll(/<code>|<\/code>/gi, "");
+          const textareaElem = document.createElement("textarea");
+
+          if (this.dataset.hasOwnProperty("clearWhiteSpace")) {
+            innerHtmlTemp = innerHtmlTemp
+              .replaceAll(/ /gi, "")
+              .replaceAll(/&nbsp;/gi, " ");
+          } else {
+            innerHtmlTemp = innerHtmlTemp.replace(/^\s+/, "");
+          }
+
+          document.querySelector(".wrapper").appendChild(textareaElem);
+
+          textareaElem.value =
+            innerHtmlTemp.indexOf("<") > -1
+              ? innerHtmlTemp.replaceAll(/<i>(.*?)<\/i>/gi, "")
+              : innerHtmlTemp;
+
+          textareaElem.select();
+
+          document.execCommand("copy");
+
+          this.style.minWidth = window
+            .getComputedStyle(this)
+            .getPropertyValue("width");
+          this.style.height = window
+            .getComputedStyle(this)
+            .getPropertyValue("height");
+          this.style.color = "#9c9c9c";
+          this.classList.add("content-on-middle");
+          this.textContent = "Copied";
+
+          setTimeout(() => {
+            this.innerHTML = innerHtmlPrev;
+            this.removeAttribute("style");
+            this.classList.remove("content-on-middle");
+          }, 300);
+
+          textareaElem.remove();
+        });
+      });
+    </script>
+  </body>
+</html>
