@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cheat Sheet Template v1.0.0</title>
+    <title>Cheat Sheet Template v1.1.0</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap"
@@ -16,7 +16,7 @@
     <style>
       /*
         name: Cheat Sheet Template
-        version: v1.0.0
+        version: v1.1.0
         url: https://github.com/steve-232/cheat-sheet-template
         license: MIT
       */
@@ -51,6 +51,11 @@
       code {
         white-space: pre-line;
       }
+      hr {
+        height: 1px;
+        border: none;
+        background-color: #e4e4e4;
+      }
       .clear-list {
         margin: 0;
         padding: 0;
@@ -80,7 +85,8 @@
         border-bottom: 1px solid #e4e4e4;
       }
       .content-body {
-        margin: 30px 30px 60px;
+        margin: 0 30px;
+        padding: 30px 0 60px;
       }
       .content-list {
         position: relative;
@@ -139,9 +145,18 @@
         overflow-y: auto;
         overflow-x: hidden;
       }
+      .main-nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .main-nav li {
+        position: relative;
+      }
       .main-nav a {
         display: block;
-        padding: 16px 20px;
+        position: relative;
+        padding: 16px 48px 16px 20px;
         color: #737373;
         text-decoration: none;
         border-bottom: 1px solid #e4e4e4;
@@ -155,31 +170,47 @@
       .main-nav a:active {
         background-color: #fff;
       }
+      .main-nav ul ul {
+        height: 0;
+        overflow: hidden;
+      }
+      .main-nav ul ul a {
+        padding-left: 40px;
+      }
+      .main-nav__expand {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        width: 26px;
+        height: 26px;
+        color: #737373;
+        background-color: #f9f9f9;
+        border-radius: 50%;
+        text-align: center;
+        border: 1px solid #e4e4e4;
+        line-height: 26px;
+        cursor: pointer;
+        user-select: none;
+        transform: translateY(-50%);
+        transition: all 160ms linear;
+      }
+      .main-nav__expand:hover {
+        color: #111;
+        background-color: #fff;
+      }
     </style>
   </head>
   <body>
     <!-- wrapper / start -->
     <div class="wrapper">
-      <aside class="aside-menu">
-        <nav id="main-nav" class="main-nav">
-          <ul class="clear-list">
-            <li>
-              <a href="#section-1">Section One</a>
-            </li>
-            <li>
-              <a href="#section-2">Section Two</a>
-            </li>
-            <li>
-              <a href="#section-3">Section Three</a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
+      <aside class="aside-menu"></aside>
       <!-- content / start -->
       <main class="main-content">
         <!-- main / start -->
-        <section id="section-1">
-          <h2 class="section-title">Section One Title</h2>
+        <section>
+          <h2 class="section-title">
+            Section One Title asldkjf askdjf alskdjf alskfj
+          </h2>
           <div class="content-body">
             <h3 class="content-title">Subtitle One</h3>
             <ul class="content-list clear-list">
@@ -236,7 +267,7 @@
         </section>
         <!-- section / end -->
         <!-- section / start -->
-        <section id="section-2">
+        <section>
           <h2 class="section-title">Section Two Title</h2>
           <div class="content-body">
             <h3 class="content-title">Subtitle One</h3>
@@ -264,7 +295,7 @@
         </section>
         <!-- section / end -->
         <!-- section / start -->
-        <section id="section-3">
+        <section>
           <h2 class="section-title">Section Three Title</h2>
           <div class="content-body">
             <ul class="content-list clear-list">
@@ -319,22 +350,126 @@
     <script>
       /*
         name: Cheat Sheet Template
-        version: v1.0.0
+        version: v1.1.0
         url: https://github.com/steve-232/cheat-sheet-template
         license: MIT
       */
-      const mainNavLinks = document.querySelectorAll(".main-nav a");
 
-      mainNavLinks.forEach((link) => {
-        if (link.hash === location.hash) link.classList.add("active");
+      location.hash = "";
+
+      const asideMenu = document.querySelector(".aside-menu");
+      const mainNav = document.createElement("nav");
+      const mainNavParentLinks = [];
+      const mainNavChildrenLinks = [];
+      mainNav.classList.add("main-nav");
+      mainNav.appendChild(document.createElement("ul"));
+
+      const sections = document.querySelectorAll(".main-content > section");
+
+      // built the main nav
+      sections.forEach((section, i) => {
+        const sectionTitle = section.querySelector(".section-title");
+        const li = document.createElement("li");
+        const link = document.createElement("a");
+
+        section.id = `section-${i}`;
+
+        link.textContent =
+          sectionTitle.dataset?.title || sectionTitle.textContent;
+        link.href = `#section-${i}`;
         link.addEventListener("click", function () {
-          mainNavLinks.forEach((link) => link.classList.remove("active"));
+          mainNavParentLinks.forEach((link) => link.classList.remove("active"));
+          mainNavChildrenLinks.forEach((link) =>
+            link.classList.remove("active")
+          );
           this.classList.add("active");
         });
+        mainNavParentLinks.push(link);
+        li.appendChild(link);
+
+        // built the dropdown nav
+        const sectionsInner = section.querySelectorAll(".content-body");
+
+        if (sectionsInner.length >= 2) {
+          const ulInner = document.createElement("ul");
+
+          sectionsInner.forEach((sectionInner, ii) => {
+            const sectionTitleInner =
+              sectionInner.querySelector(".content-title");
+            const liInner = document.createElement("li");
+            const linkInner = document.createElement("a");
+
+            sectionInner.id = `section-${i}-${ii}`;
+
+            linkInner.textContent =
+              sectionTitleInner.dataset?.title || sectionTitleInner.textContent;
+            linkInner.href = `#section-${i}-${ii}`;
+            linkInner.addEventListener("click", function () {
+              mainNavParentLinks.forEach((link) => {
+                link.classList.remove("active");
+              });
+              mainNavChildrenLinks.forEach((link) =>
+                link.classList.remove("active")
+              );
+              this.classList.add("active");
+              this.parentElement.parentElement.parentElement
+                .querySelector("a")
+                .classList.add("active");
+            });
+            mainNavChildrenLinks.push(linkInner);
+
+            liInner.appendChild(linkInner);
+            ulInner.appendChild(liInner);
+          });
+
+          li.appendChild(ulInner);
+
+          // insert "expand" icon
+          const iconExpand = document.createElement("span");
+          iconExpand.classList.add("main-nav__expand");
+          iconExpand.textContent = "+";
+
+          // toggle the dropdown nav
+          iconExpand.addEventListener("click", function () {
+            let menuHeight = 0;
+            const parentLink = this.parentElement;
+
+            if (
+              getComputedStyle(parentLink.nextElementSibling).getPropertyValue(
+                "height"
+              ) === "0px"
+            ) {
+              Array.from(parentLink.nextElementSibling.children).forEach(
+                (item) => {
+                  menuHeight += Number(
+                    getComputedStyle(item)
+                      .getPropertyValue("height")
+                      .replace("px", "")
+                  );
+                }
+              );
+
+              parentLink.nextElementSibling.style.height = `${menuHeight}px`;
+              this.textContent = "-";
+            } else {
+              parentLink.nextElementSibling.style.height = `0px`;
+              this.textContent = "+";
+            }
+          });
+
+          link.appendChild(iconExpand);
+        }
+
+        mainNav.children[0].appendChild(li);
       });
 
-      if (!location.hash.length) mainNavLinks[0].classList.add("active");
+      // highlight the "active" link
+      if (!location.hash.length) mainNavParentLinks[0].classList.add("active");
 
+      // insert the main nav
+      asideMenu.appendChild(mainNav);
+
+      // copy command
       const commands = document.querySelectorAll(".copy-content");
 
       commands.forEach((command) => {
