@@ -1,6 +1,8 @@
 # Cheat Sheet Template
 
-HTML template for easily saving, grouping, sharing, and using any kind of commands and functions from different languages, tools, and plugins. Demo is [here](https://steve-232.github.io/cheat-sheet-template/).
+HTML template for easily saving, grouping, sharing, and using any kind of commands and functions from different languages, tools, and plugins. The navigation menu is dynamically created during runtime.
+
+Demo is [here](https://steve-232.github.io/cheat-sheet-template/).
 
 ## Usage
 
